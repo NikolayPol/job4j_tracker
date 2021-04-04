@@ -12,18 +12,18 @@ public class Library {
         books[2] = book3;
         books[3] = book4;
         for (int i = 0; i < books.length; i++) {
-            System.out.println(books[i].getName()+" "+books[i].getKolStr());
+            System.out.println(books[i].getName() + " " + books[i].getKolStr());
         }
         System.out.println("----------------");
         Book book = books[0];
         books[0] = books[3];
         books[3] = book;
         for (int i = 0; i < books.length; i++) {
-            System.out.println(books[i].getName()+" "+books[i].getKolStr());
+            System.out.println(books[i].getName() + " " + books[i].getKolStr());
         }
         System.out.println("----------------");
         for (int i = 0; i < books.length; i++) {
-            if(books[i].getName() == "Clean code") {
+            if (books[i].getName().equals("Clean code")) {
                 System.out.println(books[i].getName() + " " + books[i].getKolStr());
             }
         }
