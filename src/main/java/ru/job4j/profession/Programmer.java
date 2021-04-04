@@ -1,8 +1,17 @@
 package ru.job4j.profession;
 
-public class Programmer extends Engineer{
+import javax.xml.crypto.Data;
+
+public class Programmer extends Engineer {
     private String whereAreYouSwitch;
-    public void makeCode(){
+
+    public Programmer(String name, String surname, String education,
+                      Data birthday, String diplom, String whereAreYouSwitch) {
+        super(name, surname, education, birthday, diplom);
+        this.whereAreYouSwitch = whereAreYouSwitch;
+    }
+
+    public void makeCode() {
 
     }
 }
