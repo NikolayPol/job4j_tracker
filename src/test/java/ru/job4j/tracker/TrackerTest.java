@@ -11,7 +11,7 @@ public class TrackerTest {
         Item item = new Item();
         item.setName("test1");
         tracker.add(item);
-        Item result = tracker.find(item.getId());
+        Item result = tracker.findById(item.getId());
         assertThat(result.getName(), is(item.getName()));
     }
 }
