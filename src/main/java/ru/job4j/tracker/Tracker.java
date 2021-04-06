@@ -50,6 +50,16 @@ public class Tracker {
         int index = indexOf(id);
         item.setId(items[index].getId());
         items[index] = item;
-    return items[indexOf(id)] == item;
+        return items[indexOf(id)] == item;
+    }
+
+    public boolean delete(int id) {
+        //Item item = findById(id);
+        int start = indexOf(id);
+        items[start] = null;
+        System.arraycopy(items, start + 1, items, start, items.length - start - 1);
+        items[items.length - 1] = null;
+        size--;
+        return true;
     }
 }
