@@ -14,24 +14,23 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] names = Arrays.copyOf(items, items.length);
-        return items;
+        return Arrays.copyOf(items, items.length);
     }
 
     public Item[] findByName(String key) {
         Item[] names = new Item[items.length];
+        int k = 0;
         for (int i = 0; i < items.length; i++) {
             if (items[i].getName().equals(key)) {
                 names[i] = items[i];
+                k++;
             }
         }
-        return items;
+        return Arrays.copyOf(items, k);
     }
 
     public Item findById(int id) {
-        /* Находим индекс */
         int index = indexOf(id);
-        /* Если индекс найден возвращаем item, иначе null */
         return index != -1 ? items[index] : null;
     }
 
