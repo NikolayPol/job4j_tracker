@@ -20,8 +20,8 @@ public class StartUI {
             } else if (select == 1) {
                 System.out.println("=== All items ====");
                 Item[] arr = tracker.findAll();
-                for (int i = 0; i < arr.length; i++) {
-                    System.out.println(arr[i]);
+                for (Item i: arr) {
+                    System.out.println(i);
                 }
             } else if (select == 2) {
                 System.out.println("=== Edit item ====");
@@ -35,43 +35,37 @@ public class StartUI {
                 } else {
                     System.out.println("Replacement caused an error");
                 }
-
             } else if (select == 3) {
                 System.out.println("=== Delete item ====");
                 System.out.print("Enter id: ");
                 int id = Integer.valueOf(scanner.nextLine());
-                tracker.delete(id);
                 if (tracker.delete(id)) {
                     System.out.println("Delete is successfull");
                 } else {
                     System.out.println("Delete caused an error");
                 }
-
             } else if (select == 4) {
                 System.out.println("=== Find item by Id ====");
                 System.out.print("Enter id: ");
                 int id = Integer.valueOf(scanner.nextLine());
                 Item rsl = tracker.findById(id);
                 if (rsl != null) {
-                    System.out.println(rsl.toString());
+                    System.out.println(rsl);
                 } else {
                     System.out.println("Item not found");
                 }
-
             } else if (select == 5) {
                 System.out.println("=== Find items by name ====");
                 System.out.print("Enter name: ");
                 String name = scanner.nextLine();
                 Item[] newItem = tracker.findByName(name);
-
                 if (newItem.length != 0) {
-                    for (int i = 0; i < newItem.length; i++) {
-                        System.out.println(newItem[i]);
+                    for (Item i: newItem) {
+                        System.out.println(i);
                     }
                 } else {
                     System.out.println("Item not found");
                 }
-
             } else if (select == 6) {
                 System.out.println("=== Exit Program ====");
                 run = false;
