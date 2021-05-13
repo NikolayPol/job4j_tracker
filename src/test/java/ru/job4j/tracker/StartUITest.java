@@ -43,6 +43,6 @@ public class StartUITest extends TestCase {
         };
         StartUI.deleteItem(new StubInput(answers), tracker);
         Item deleted = tracker.findById(id);
-        Assert.assertEquals(deleted, null);
+        Assert.assertNull(deleted);
     }
 }
