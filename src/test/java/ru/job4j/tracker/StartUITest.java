@@ -88,7 +88,7 @@ public class StartUITest {
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("New item"));
+        assertThat(out.toString().substring(65, 96), is("id=1, name='New item', created="));
     }
 
     @Test
@@ -104,7 +104,8 @@ public class StartUITest {
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).getName(), is("New item"));
+        assertThat(out.toString().substring(67, 98), is("id=1, name='New item', created="));
+
     }
 
     @Test
@@ -120,6 +121,7 @@ public class StartUITest {
                 new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findByName(item.getName())[0].getId(), is(1));
+        assertThat(out.toString().substring(72, 103), is("id=1, name='New item', created="));
+
     }
 }
