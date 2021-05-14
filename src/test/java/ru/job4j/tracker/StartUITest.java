@@ -16,7 +16,7 @@ public class StartUITest extends TestCase {
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new ExitAction()
+                new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
@@ -34,7 +34,7 @@ public class StartUITest extends TestCase {
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(out),
-                new ExitAction()
+                new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
@@ -49,8 +49,8 @@ public class StartUITest extends TestCase {
                 new String[]{"0", String.valueOf(item.getId()), replacedName, "1"}
         );
         UserAction[] actions = {
-                new ReplaceAction(),
-                new ExitAction()
+                new ReplaceAction(out),
+                new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
@@ -65,8 +65,8 @@ public class StartUITest extends TestCase {
                 new String[]{"0", String.valueOf(item.getId()), "1"}
         );
         UserAction[] actions = {
-                new DeleteAction(),
-                new ExitAction()
+                new DeleteAction(out),
+                new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
@@ -81,8 +81,8 @@ public class StartUITest extends TestCase {
                 new String[]{"0", "1"}
         );
         UserAction[] actions = {
-                new ShowAllAction(),
-                new ExitAction()
+                new ShowAllAction(out),
+                new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("New item"));
@@ -96,8 +96,8 @@ public class StartUITest extends TestCase {
                 new String[]{"0", "1", "1"}
         );
         UserAction[] actions = {
-                new FindByIdAction(),
-                new ExitAction()
+                new FindByIdAction(out),
+                new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is("New item"));
@@ -111,8 +111,8 @@ public class StartUITest extends TestCase {
                 new String[]{"0", "New item", "1"}
         );
         UserAction[] actions = {
-                new FindByNameAction(),
-                new ExitAction()
+                new FindByNameAction(out),
+                new ExitAction(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findByName(item.getName())[0].getId(), is(1));
