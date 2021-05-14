@@ -7,7 +7,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
 
-public class StartUITest extends TestCase {
+public class StartUITest {
     @Test
     public void whenExit() {
         Output out = new StubOutput();
@@ -40,6 +40,7 @@ public class StartUITest extends TestCase {
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
+    @Test
     public void testReplaceItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
@@ -57,6 +58,7 @@ public class StartUITest extends TestCase {
 
     }
 
+    @Test
     public void testDeteleItem() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
@@ -73,6 +75,7 @@ public class StartUITest extends TestCase {
 
     }
 
+    @Test
     public void testShowAllAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
@@ -88,6 +91,7 @@ public class StartUITest extends TestCase {
         assertThat(tracker.findAll()[0].getName(), is("New item"));
     }
 
+    @Test
     public void testFindByIdAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
@@ -103,6 +107,7 @@ public class StartUITest extends TestCase {
         assertThat(tracker.findById(item.getId()).getName(), is("New item"));
     }
 
+    @Test
     public void testFindByNameAction() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
