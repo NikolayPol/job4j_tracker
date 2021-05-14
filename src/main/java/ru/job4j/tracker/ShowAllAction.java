@@ -22,7 +22,7 @@ public class ShowAllAction implements UserAction {
                 System.out.println(item);
             }
         } else {
-            System.out.println("Хранилище еще не содержит заявок");
+            out.println("Хранилище еще не содержит заявок");
         }
         return true;
     }
