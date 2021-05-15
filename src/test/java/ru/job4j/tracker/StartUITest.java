@@ -19,7 +19,7 @@ public class StartUITest {
         String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                  "Menu." + ln
+                "Menu." + ln
                         + "0. Exit" + ln
         ));
     }
@@ -39,12 +39,12 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu." + ln
-                      + "0. Add new Item" + ln
-                      + "1. Exit" + ln
-                      + "=== Create a new Item ====" + ln
-                      + "Menu." + ln
-                      + "0. Add new Item" + ln
-                      + "1. Exit" + ln
+                        + "0. Add new Item" + ln
+                        + "1. Exit" + ln
+                        + "=== Create a new Item ====" + ln
+                        + "Menu." + ln
+                        + "0. Add new Item" + ln
+                        + "1. Exit" + ln
         ));
     }
 
@@ -64,7 +64,7 @@ public class StartUITest {
         String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                  "Menu." + ln
+                "Menu." + ln
                         + "0. Edit item" + ln
                         + "1. Exit" + ln
                         + "=== Edit item ====" + ln
@@ -91,7 +91,7 @@ public class StartUITest {
         String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                  "Menu." + ln
+                "Menu." + ln
                         + "0. Delete item" + ln
                         + "1. Exit" + ln
                         + "=== Delete item ====" + ln
@@ -118,7 +118,7 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
-                  "Menu." + ln
+                "Menu." + ln
                         + "0. Show all items" + ln
                         + "1. Exit" + ln
                         + "=== Show all items ====" + ln
@@ -145,7 +145,7 @@ public class StartUITest {
         String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                  "Menu." + ln
+                "Menu." + ln
                         + "0. Find item by id" + ln
                         + "1. Exit" + ln
                         + "=== Find item by id ====" + ln
@@ -187,7 +187,7 @@ public class StartUITest {
     public void whenInvalidExit() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"10", "0"}
+                new String[]{"10", "0"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = new UserAction[]{
