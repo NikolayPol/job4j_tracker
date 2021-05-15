@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
 
 public class StartUITest {
@@ -35,17 +36,8 @@ public class StartUITest {
                 new CreateAction(out),
                 new ExitAction(out)
         };
-        String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is(
-                "Menu." + ln
-                        + "0. Add new Item" + ln
-                        + "1. Exit" + ln
-                        + "=== Create a new Item ====" + ln
-                        + "Menu." + ln
-                        + "0. Add new Item" + ln
-                        + "1. Exit" + ln
-        ));
+        assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
     @Test
@@ -61,18 +53,8 @@ public class StartUITest {
                 new ReplaceAction(out),
                 new ExitAction(out)
         };
-        String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is(
-                "Menu." + ln
-                        + "0. Edit item" + ln
-                        + "1. Exit" + ln
-                        + "=== Edit item ====" + ln
-                        + "Заявка изменена успешно." + ln
-                        + "Menu." + ln
-                        + "0. Edit item" + ln
-                        + "1. Exit" + ln
-        ));
+        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
 
     }
 
@@ -88,18 +70,8 @@ public class StartUITest {
                 new DeleteAction(out),
                 new ExitAction(out)
         };
-        String ln = System.lineSeparator();
         new StartUI(out).init(in, tracker, actions);
-        assertThat(out.toString(), is(
-                "Menu." + ln
-                        + "0. Delete item" + ln
-                        + "1. Exit" + ln
-                        + "=== Delete item ====" + ln
-                        + "Заявка удалена успешно." + ln
-                        + "Menu." + ln
-                        + "0. Delete item" + ln
-                        + "1. Exit" + ln
-        ));
+        assertThat(tracker.findById(item.getId()), is(nullValue()));
 
     }
 
