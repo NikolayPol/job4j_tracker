@@ -49,6 +49,7 @@ public class ValidateInputTest {
         assertThat(selected, is(5));
         selected = input.askInt("Enter menu:");
         assertThat(selected, is(6));
+
     }
 
     @Test
