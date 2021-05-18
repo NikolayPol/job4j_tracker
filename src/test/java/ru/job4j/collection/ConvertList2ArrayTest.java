@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThat;
 
 @Ignore
 public class ConvertList2ArrayTest {
+
     @Test
     public void when7ElementsThen9() {
         ConvertList2Array list = new ConvertList2Array();
