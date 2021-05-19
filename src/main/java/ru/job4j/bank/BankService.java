@@ -12,6 +12,7 @@ import java.util.Map;
  * 2. Удалять пользователя из системы.
  * 3. Добавлять пользователю банковский счет. У пользователя системы могут быть несколько счетов.
  * 4. Переводить деньги с одного банковского счета на другой счет.
+ *
  * @author Nikolay Polegaev
  * @version 1.0.
  */
@@ -23,6 +24,7 @@ public class BankService {
 
     /**
      * Метод добавляет Клиента в систему.
+     *
      * @param user - входной параметр метода содержит объект класса User.
      */
     public void addUser(User user) {
@@ -31,18 +33,23 @@ public class BankService {
 
     /**
      * Метод добавляет новый счет Клиента.
+     *
      * @param passport - паспортные данные Клиента.
-     * @param account - расчетный счет Клиента.
+     * @param account  - расчетный счет Клиента.
      */
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
-        List<Account> userAccounts = users.get(user);
-        userAccounts.add(account);
-        users.putIfAbsent(user, userAccounts);
+        if (user != null) {
+            List<Account> userAccounts = users.get(user);
+            if (!userAccounts.contains(account)) {
+                userAccounts.add(account);
+            }
+        }
     }
 
     /**
      * Метод ищет Клиента по данным его паспорта.
+     *
      * @param passport - паспортные данные Клиента.
      * @return - результатом метода является Клиент.
      */
@@ -57,7 +64,8 @@ public class BankService {
 
     /**
      * Метод ищет расчетный счет Клиента по реквизитам.
-     * @param passport - паспортные данные.
+     *
+     * @param passport  - паспортные данные.
      * @param requisite - реквизиты счета.
      * @return - результатом метода является расчетный счет Клиент.
      */
@@ -79,24 +87,24 @@ public class BankService {
      * Метод перечисляет деньги с одного расчетного счета Клиента на другой расчетный счет.
      * Если счёт не найден или не хватает денег на счёте srcAccount (с которого переводят),
      * то метод должен вернуть false.
-     * @param srcPassport - паспортные данные Клиента списания.
-     * @param srcRequisite - реквизиты расчетного счета списания.
-     * @param destPassport - паспортные данные Клиента зачисления.
+     *
+     * @param srcPassport   - паспортные данные Клиента списания.
+     * @param srcRequisite  - реквизиты расчетного счета списания.
+     * @param destPassport  - паспортные данные Клиента зачисления.
      * @param destRequisite - реквизиты расчетного счета зачисления.
-     * @param amount - количество денежных средств для транзакции.
+     * @param amount        - количество денежных средств для транзакции.
      * @return - результат метода true - успешная транзакция, false - транзакция не прошла.
      */
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
-        boolean rsl;
+        boolean rsl = true;
         Account srcAccount = findByRequisite(srcPassport, srcRequisite);
         Account destAccount = findByRequisite(destPassport, destRequisite);
-        if (srcAccount == null || srcAccount.getBalance() < amount) {
+        if (srcAccount == null || destAccount == null || srcAccount.getBalance() < amount) {
             return false;
         }
         srcAccount.setBalance(destAccount.getBalance() - amount);
         destAccount.setBalance(destAccount.getBalance() + amount);
-        rsl = true;
         return rsl;
     }
 }
