@@ -2,7 +2,18 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс реализует модель расчетного счета.
+ * Класс содержит данные о реквизитах клиеента и
+ * размер денежных средств на счете.
+ * @author Nikolay Polegaev
+ * @version 1.0.
+ */
 public class Account {
+    /**
+     * Поле requisite содержит данные о реквизите расчетного счета.
+     * Поле balance содержит данные о размере денежных средств на расчетном счету.
+     */
     private String requisite;
     private double balance;
 
