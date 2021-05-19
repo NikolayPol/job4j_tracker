@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.HashSet;
 
 public class UniqueText {
@@ -6,14 +7,11 @@ public class UniqueText {
         String[] origin = originText.split(" ");
         String[] text = duplicateText.split(" ");
         HashSet<String> check = new HashSet<>();
-        for (String word : origin) {
-            check.add(word);
-        }
+        Collections.addAll(check, origin);
         for (String word : text) {
-            if (check.contains(word)) {
-                continue;
-            } else {
+            if (!check.contains(word)) {
                 rsl = false;
+                break;
             }
         }
         return rsl;
