@@ -28,8 +28,8 @@ public class UserTest {
                 .compareTo(
                         new User("Ivan", 31)
                 );
-        System.out.println((int)'P');
-        System.out.println((int)'I');
+        System.out.println((int) 'P');
+        System.out.println((int) 'I');
         assertThat(rsl, greaterThan(0));
     }
 

@@ -10,17 +10,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class JobTest {
-    /**
-     Job1 - высокий приоритет имени Job1 > Job3
-     Job3 - низкий приоритет имени
-     1 - высокий приоритет 1 > 3
-     3 - низкий приоритет
-
-     JobByName - сортировка по возрастанию сначала по имени потом по возрастанию [Job{Job1, 3}, Job{Job2, 1}, Job{Job2, 2}]
-     JobByDescName - сортировка по убыванию сначала по имени потом по убыванию [Job{Job1, 3}, Job{Job2, 2}, Job{Job2, 1}]
-     JobByPriority - сортировка по возрастанию по приоритету потом по имени [Job{Job2, 1}, Job{Job2, 2}, Job{Job1, 3}]
-     JobByDescPriority - сортировка по убыванию сначала по приоритету потом по имени [Job{Job2, 2}, Job{Job2, 1}, Job{Job1, 3}]
-     */
     @Test
     public void whenCompatorByNameAndPrority() {
         Comparator<Job> cmpNamePriority =
@@ -31,7 +20,7 @@ public class JobTest {
                 new Job("Job2", 1),
                 new Job("Job1", 3)
         );
-        Collections.sort(jobsActual, cmpNamePriority);
+        jobsActual.sort(cmpNamePriority);
         System.out.println(jobsActual);
         List<Job> jobsExpected = new ArrayList<>();
         Collections.addAll(jobsExpected,
@@ -52,7 +41,7 @@ public class JobTest {
                 new Job("Job2", 1),
                 new Job("Job1", 3)
         );
-        Collections.sort(jobsActual, cmpNameDescPriority);
+        jobsActual.sort(cmpNameDescPriority);
         System.out.println(jobsActual);
         List<Job> jobsExpected = new ArrayList<>();
         Collections.addAll(jobsExpected,
@@ -73,7 +62,7 @@ public class JobTest {
                 new Job("Job2", 1),
                 new Job("Job1", 3)
         );
-        Collections.sort(jobsActual, cmpDescNamePriority);
+        jobsActual.sort(cmpDescNamePriority);
         System.out.println(jobsActual);
         List<Job> jobsExpected = new ArrayList<>();
         Collections.addAll(jobsExpected,
@@ -94,7 +83,7 @@ public class JobTest {
                 new Job("Job2", 1),
                 new Job("Job1", 3)
         );
-        Collections.sort(jobsActual, cmpDescNameDescPriority);
+        jobsActual.sort(cmpDescNameDescPriority);
         System.out.println(jobsActual);
         List<Job> jobsExpected = new ArrayList<>();
         Collections.addAll(jobsExpected,
@@ -104,6 +93,4 @@ public class JobTest {
         );
         assertEquals(jobsActual.toString(), jobsExpected.toString());
     }
-
-
 }

@@ -7,7 +7,8 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
 
-public class MaxTest{
+public class MaxTest {
+
     @Test
     public void when10and20then20() {
         int first = 10;
@@ -15,6 +16,7 @@ public class MaxTest{
         int result = Max.max(first, second);
         Assert.assertEquals(result, 20);
     }
+
     @Test
     public void when10and20and30then30() {
         int first = 10;
@@ -23,6 +25,7 @@ public class MaxTest{
         int result = Max.max(first, second, third);
         Assert.assertEquals(result, 30);
     }
+
     @Test
     public void when10and20and30and40then40() {
         int first = 10;
