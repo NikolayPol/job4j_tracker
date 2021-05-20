@@ -1,7 +1,5 @@
 package ru.job4j.collection;
 
-import org.w3c.dom.Entity;
-
 import java.util.HashMap;
 
 public class UsageMap {

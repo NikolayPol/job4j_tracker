@@ -1,9 +1,11 @@
+package ru.job4j.uniquetext;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import ru.job4j.uniquetext.UniqueText;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
 
 public class UniqueTextTest {
 

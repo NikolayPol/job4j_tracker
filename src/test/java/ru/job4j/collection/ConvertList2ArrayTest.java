@@ -1,7 +1,5 @@
 package ru.job4j.collection;
 
-import static org.junit.Assert.*;
-
 import org.junit.Ignore;
 import org.junit.Test;
 

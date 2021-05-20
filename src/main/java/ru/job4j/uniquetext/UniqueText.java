@@ -1,3 +1,5 @@
+package ru.job4j.uniquetext;
+
 import java.util.Collections;
 import java.util.HashSet;
 
