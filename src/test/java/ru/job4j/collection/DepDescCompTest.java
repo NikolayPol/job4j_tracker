@@ -28,7 +28,7 @@ public class DepDescCompTest {
 
     @Test
     public void whenUpDepartmentGoBefore2() {
-        int rsl = new DepDescComp().compare (
+        int rsl = new DepDescComp().compare(
                 "k2/sk1",
                 "k2/sk1/sk2"
         );
@@ -37,7 +37,7 @@ public class DepDescCompTest {
 
     @Test
     public void whenUpDepartmentGoBefore3() {
-        int rsl = new DepDescComp().compare (
+        int rsl = new DepDescComp().compare(
                 "k2",
                 "k1"
         );
@@ -46,7 +46,7 @@ public class DepDescCompTest {
 
     @Test
     public void whenUpDepartmentGoBefore4() {
-        int rsl = new DepDescComp().compare (
+        int rsl = new DepDescComp().compare(
                 "k1/ssk2",
                 "k1"
         );
