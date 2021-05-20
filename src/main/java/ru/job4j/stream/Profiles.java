@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 public class Profiles {
     public List<Address> collect(List<Profile> profiles) {
         return profiles.stream()
-                        .distinct()
                         .map(Profile::getAddress)
                         .sorted(Comparator.comparing(Address::getCity)
                         .thenComparing(Address::getStreet)
                         .thenComparing(Address::getHome)
                         .thenComparing(Address::getApartment))
-                .collect(Collectors.toList());
+                        .distinct()
+                        .collect(Collectors.toList());
     }
 }
