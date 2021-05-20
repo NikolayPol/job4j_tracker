@@ -18,14 +18,13 @@ public class JobDescByNameTest {
                 new Job("Job3", 1),
                 new Job("Job1", 3)
         );
-        Collections.sort(jobsActual, new JobDescByName());
-        System.out.println(jobsActual);
         List<Job> jobsExpected = new ArrayList<>();
         Collections.addAll(jobsExpected,
-                new Job("Job3", 1),
-                new Job("Job2", 2),
-                new Job("Job1", 3)
+                jobsActual.get(1),
+                jobsActual.get(0),
+                jobsActual.get(2)
         );
-        assertEquals(jobsActual.toString(), jobsExpected.toString());
+        jobsActual.sort(new JobDescByName());
+        assertEquals(jobsActual, jobsExpected);
     }
 }

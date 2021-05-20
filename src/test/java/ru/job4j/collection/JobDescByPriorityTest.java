@@ -18,13 +18,13 @@ public class JobDescByPriorityTest {
                 new Job("Job3", 3),
                 new Job("Job1", 1)
         );
-        Collections.sort(jobsActual, new JobDescByPriority());
         List<Job> jobsExpected = new ArrayList<>();
         Collections.addAll(jobsExpected,
-                new Job("Job3", 3),
-                new Job("Job2", 2),
-                new Job("Job1", 1)
+                jobsActual.get(1),
+                jobsActual.get(0),
+                jobsActual.get(2)
         );
-        assertEquals(jobsActual.toString(), jobsExpected.toString());
+        jobsActual.sort(new JobDescByPriority());
+        assertEquals(jobsActual, jobsExpected);
     }
 }
