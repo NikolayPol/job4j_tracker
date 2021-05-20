@@ -13,12 +13,10 @@ public class Departments {
             for (String el : dep.split("/")) {
                 if (start.equals("")) {
                     start += el;
-                    tmp.add(start);
                 } else {
                     start += "/" + el;
-                    tmp.add(start);
                 }
-                //System.out.println(tmp);
+                tmp.add(start);
             }
         }
         rsl.addAll(tmp);
@@ -27,22 +25,11 @@ public class Departments {
 
     public static void sortAsc(List<String> orgs) {
         orgs.sort(Comparator.naturalOrder());
-        System.out.println("---ASC---");
         System.out.println(orgs);
     }
 
     public static void sortDesc(List<String> orgs) {
         orgs.sort(new DepDescComp());
-        System.out.println("---DESC---");
         System.out.println(orgs);
-    }
-
-    public static void main(String[] args) {
-        List<String> input = new ArrayList<>();
-        Collections.addAll(input, "k1/sk1/ssk1", "k2/sk1/ssk1", "k2/sk1/ssk2",
-                "k1/sk1/ssk2", "k2/sk1/ssk1", "k1/sk2", "k1/sk1");
-        Departments.fillGaps(input);
-        Departments.sortAsc(Departments.fillGaps(input));
-        Departments.sortDesc(Departments.fillGaps(input));
     }
 }
