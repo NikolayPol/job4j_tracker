@@ -11,10 +11,10 @@ public class StudentListToMapTest {
     public void studentListToMapTest() {
         List<Student> students = List.of(
                 new Student(90, "Ivanov"),
-                new Student(90, "Ivanov"),
-                new Student(90, "Ivanov"),
                 new Student(60, "Petrov"),
+                new Student(90, "Ivanov"),
                 new Student(40, "Aleksandrov"),
+                new Student(90, "Ivanov"),
                 new Student(80, "Dmitriev")
         );
         StudentListToMap studentListToMap = new StudentListToMap();
