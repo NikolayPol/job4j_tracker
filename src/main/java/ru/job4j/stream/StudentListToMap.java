@@ -13,11 +13,7 @@ public class StudentListToMap {
                         Collectors.toMap(
                                 Student::getSurname,
                                 (el) -> el,
-                                (a, b) -> {
-                                    Set<Student> set = new HashSet<>();
-                                    set.add(a);
-                                    return set.add(b) ? b : a;
-                                }
+                                (a, b) -> a
                         ));
     }
 }
