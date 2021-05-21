@@ -7,6 +7,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class ProfilesTest {
+
     @Test
     public void whenCollectProfileAdress() {
         List<Profile> clients = List.of(
@@ -27,6 +28,4 @@ public class ProfilesTest {
         List<Address> actual = profiles.collect(clients);
         assertEquals(actual, explicit);
     }
-
-
 }
