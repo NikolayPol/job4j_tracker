@@ -52,11 +52,8 @@ public class BankService {
      * @return - результатом метода является Клиент.
      */
     public Optional<User> findByPassport(String passport) {
-        Optional<User> rsl = Optional.empty();
-        Stream<User> stream = users.keySet().stream();
-        rsl = stream.filter(el -> el.getPassport().equals(passport))
+        return users.keySet().stream().filter(el -> el.getPassport().equals(passport))
                 .findFirst();
-        return rsl;
     }
 
     /**
