@@ -2,14 +2,12 @@ package ru.job4j.tasks;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.regex.Pattern;
 
 public class Article {
     public static boolean generateBy(String origin, String line) {
         boolean rsl = true;
-        Pattern p = Pattern.compile("[.,\\s!:;]");
-        String[] originSplit = p.split(origin);
-        String[] lineSplit = p.split(line);
+        String[] originSplit = origin.replaceAll("\\p{Punct}", " ").split(" ");
+        String[] lineSplit = line.replaceAll("\\p{Punct}", " ").split(" ");
         HashSet<String> set = new HashSet<>();
         Collections.addAll(set, originSplit);
         for (String ch : lineSplit) {
