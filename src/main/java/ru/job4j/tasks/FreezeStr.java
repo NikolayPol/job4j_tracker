@@ -7,27 +7,29 @@ public class FreezeStr {
         boolean rsl = false;
         char[] leftSplit = left.toCharArray();
         char[] rightSplit = right.toCharArray();
-        HashMap<Character, Integer> map1 = new HashMap<>();
-        HashMap<Character, Integer> map2 = new HashMap<>();
+        HashMap<Character, Integer> map = new HashMap<>();
         int i = 1;
         for (char ch : leftSplit) {
-            if (map1.containsKey(ch)) {
-                i = map1.get(ch);
+            if (map.containsKey(ch)) {
+                i = map.get(ch);
                 i++;
             }
-            map1.put(ch, i);
+            map.put(ch, i);
             i = 1;
         }
         for (char ch : rightSplit) {
-            if (map2.containsKey(ch)) {
-                i = map2.get(ch);
-                i++;
+            if (!map.containsKey(ch)) {
+                rsl = false;
             }
-            map2.put(ch, i);
-            i = 1;
+            if (map.containsKey(ch) && map.get(ch) == 1) {
+                map.remove(ch);
+            }
+            if (map.containsKey(ch) && map.get(ch) > 1) {
+                map.replace(ch, map.get(ch) - 1);
+            }
         }
-        if (map1.entrySet().equals(map2.entrySet())) {
-            return true;
+        if (map.isEmpty()) {
+            rsl = true;
         }
         return rsl;
     }
