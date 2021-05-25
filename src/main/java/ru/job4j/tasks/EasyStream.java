@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 public class EasyStream {
     private List<Integer> source;
 
-    public EasyStream(List<Integer> source) {
+    private EasyStream(List<Integer> source) {
         this.source = source;
     }
 
@@ -27,7 +27,6 @@ public class EasyStream {
         for (int i = 0; i < source.size(); i++) {
             list.set(i, fun.apply(list.get(i)));
         }
-        source = list;
         return new EasyStream(list);
     }
 
@@ -36,18 +35,14 @@ public class EasyStream {
             throw new UnsupportedOperationException();
         }
         List<Integer> list = new ArrayList<>();
-        int j = 0;
         Integer el;
         for (Integer integer : source) {
             el = integer;
             if (fun.test(el)) {
-                list.add(j, el);
-                j++;
+                list.add(el);
             }
         }
-        source = list;
         return new EasyStream(list);
-
     }
 
     public List<Integer> collect() {
