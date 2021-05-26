@@ -9,7 +9,7 @@ public class Analyze {
     public static double averageScore(Stream<Pupil> stream) {
         return stream
                 .flatMap(pupil -> pupil.getSubjects().stream())
-                .mapToInt(subject -> subject.getScore())
+                .mapToInt(Subject::getScore)
                 .average()
                 .orElse(0D);
     }
@@ -18,7 +18,7 @@ public class Analyze {
         return stream
                 .map(pupil -> new Tuple(pupil.getName(), Stream.of(pupil)
                                                             .flatMap(p -> p.getSubjects().stream())
-                                                            .mapToInt(subject -> subject.getScore())
+                                                            .mapToInt(Subject::getScore)
                                                             .average()
                                                             .orElse(0D)
                                        ))
