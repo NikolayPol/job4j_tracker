@@ -7,7 +7,9 @@ import java.util.Map;
 import java.util.function.*;
 
 public class FunctionalInterfaces {
+
     public static void main(String[] args) {
+
         Map<Integer, String> map = new HashMap<>();
         BiConsumer<Integer, String> biCon = (key, value) -> map.put(key, value);
         biCon.accept(1, "one");
