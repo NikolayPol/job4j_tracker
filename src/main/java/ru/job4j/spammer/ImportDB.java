@@ -1,19 +1,16 @@
 package ru.job4j.spammer;
 
-import ru.job4j.tracker.SqlTracker;
-
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ImportDB {
 
-    private Properties cfg;
-    private String dump;
+    private final Properties cfg;
+    private final String dump;
 
     public ImportDB(Properties cfg, String dump) {
         this.cfg = cfg;
@@ -53,11 +50,27 @@ public class ImportDB {
     }
 
     private static class User {
-        String name;
-        String email;
+        private String name;
+        private String email;
 
         public User(String name, String email) {
             this.name = name;
+            this.email = email;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
             this.email = email;
         }
     }
