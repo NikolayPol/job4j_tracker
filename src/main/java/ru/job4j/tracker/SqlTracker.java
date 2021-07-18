@@ -11,6 +11,13 @@ public class SqlTracker implements Store {
 
     private Connection cn;
 
+    public SqlTracker() {
+    }
+
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader()
                 .getResourceAsStream("app.properties")) {
@@ -86,10 +93,10 @@ public class SqlTracker implements Store {
     public List<Item> findAll() {
         List<Item> list = new ArrayList<>();
         String sql = "select * from items";
-        try(Statement statement = cn.createStatement()) {
+        try (Statement statement = cn.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
             Item item;
-            while (rs.next()){
+            while (rs.next()) {
                 item = new Item(rs.getInt(1), rs.getString(2));
 //                Timestamp timestamp = new Timestamp(rs.getInt(3));
 //                LocalDateTime localDateTime = timestamp.toLocalDateTime();
@@ -109,9 +116,9 @@ public class SqlTracker implements Store {
                 "select * from items where name = '%s'",
                 key
         );
-        try(Statement statement = cn.createStatement()){
+        try (Statement statement = cn.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
-            while(rs.next()) {
+            while (rs.next()) {
                 list.add(new Item(rs.getInt(1),
                         rs.getString(2)));
             }
@@ -128,9 +135,9 @@ public class SqlTracker implements Store {
                 "select * from items where id = %s",
                 id
         );
-        try(Statement statement = cn.createStatement()){
+        try (Statement statement = cn.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 item = new Item(rs.getInt(1), rs.getString(2));
             }
         } catch (SQLException throwables) {
