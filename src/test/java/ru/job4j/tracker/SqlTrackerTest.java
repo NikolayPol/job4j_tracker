@@ -27,7 +27,7 @@ public class SqlTrackerTest {
     @BeforeClass
     public static void initConnection() {
         try (InputStream in = SqlTrackerTest.class.getClassLoader()
-                .getResourceAsStream("testtrackerdb.properties")) {
+                .getResourceAsStream("test.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
@@ -51,8 +51,8 @@ public class SqlTrackerTest {
     public void wipeTable() throws SQLException {
         try (PreparedStatement statement =
                      connection.prepareStatement(
-                             "delete from items;"
-                                     + "alter sequence items_id_seq restart with 1;")) {
+                             "delete from items")) {
+            //+ "alter sequence items_id_seq restart with 1;"))
             statement.execute();
         }
     }
