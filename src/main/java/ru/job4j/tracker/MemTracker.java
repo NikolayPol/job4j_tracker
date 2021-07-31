@@ -3,9 +3,16 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemTracker {
+public class MemTracker implements Store {
     private final List<Item> items = new ArrayList<>();
     private int id = 1;
+
+    public MemTracker() {
+    }
+
+    @Override
+    public void init() {
+    }
 
     public Item add(Item item) {
         item.setId(id++);
@@ -60,6 +67,9 @@ public class MemTracker {
             items.remove(start);
         }
         return rsl;
+    }
 
+    @Override
+    public void close() {
     }
 }
