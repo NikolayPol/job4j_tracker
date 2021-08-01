@@ -62,8 +62,7 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
-        item.setId(1);
-        assertEquals(tracker.findById(item.getId()).toString(), item.toString());
+        assertEquals(tracker.findById(1).toString(), item.toString());
     }
 
     @Test
@@ -103,7 +102,7 @@ public class SqlTrackerTest {
         Item item2 = new Item("item2");
         tracker.add(item1);
         item1.setId(1);
-        item2.setId(1);
+        item2.setId(2);
         List<Item> list = new ArrayList<>();
         list.add(item2);
         assertTrue(tracker.replace(1, item2));
