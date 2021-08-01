@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import java.io.InputStream;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -43,10 +44,17 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) {
         try (PreparedStatement ps =
-                     cn.prepareStatement("insert into items(name, created) values (?, ?)")) {
+                     cn.prepareStatement(
+                             "insert into items(name, created) values (?, ?)",
+                             Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, item.getName());
             ps.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             ps.execute();
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setId(generatedKeys.getInt(1));
+                }
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -57,12 +65,12 @@ public class SqlTracker implements Store {
     public boolean replace(int id, Item item) {
         boolean rsl = true;
         try (PreparedStatement ps =
-                     cn.prepareStatement("update items set name = ? where id = ?")) {
+                     cn.prepareStatement("update items set name = ?,created = ? where id = ?")) {
             ps.setString(1, item.getName());
-            ps.setInt(2, id);
-            ps.execute();
+            ps.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+            ps.setInt(3, id);
+            rsl = ps.executeUpdate() > 0;
         } catch (SQLException throwables) {
-            rsl = false;
             throwables.printStackTrace();
         }
         return rsl;
@@ -74,9 +82,8 @@ public class SqlTracker implements Store {
         try (PreparedStatement ps =
                      cn.prepareStatement("delete from items where id = ?")) {
             ps.setInt(1, id);
-            ps.execute();
+            rsl = ps.executeUpdate() > 0;
         } catch (SQLException throwables) {
-            rsl = false;
             throwables.printStackTrace();
         }
         return rsl;
@@ -110,10 +117,6 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findByName(String key) {
         List<Item> list = new ArrayList<>();
-        String sql = String.format(
-                "select * from items where name = '%s'",
-                key
-        );
         try (PreparedStatement ps =
                      cn.prepareStatement("select * from items where name = ?")) {
             ps.setString(1, key);
