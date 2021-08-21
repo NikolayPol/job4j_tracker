@@ -62,7 +62,8 @@ public class SqlTrackerTest {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         item = tracker.add(item);
-        assertEquals(tracker.findById(item.getId()).toString(), item.toString());
+        Item expected = tracker.findById(item.getId());
+        assertEquals(expected, item);
     }
 
     @Test
@@ -72,7 +73,7 @@ public class SqlTrackerTest {
         item = tracker.add(item);
         List<Item> list = new ArrayList<>();
         list.add(item);
-        assertThat(tracker.findByName(item.getName()).toString(), is(list.toString()));
+        assertThat(tracker.findByName(item.getName()), is(list));
     }
 
     @Test
@@ -88,7 +89,7 @@ public class SqlTrackerTest {
         list.add(item1);
         list.add(item2);
         list.add(item3);
-        assertThat(tracker.findAll().toString(), is(list.toString()));
+        assertThat(tracker.findAll(), is(list));
     }
 
     @Test
@@ -101,7 +102,7 @@ public class SqlTrackerTest {
         List<Item> list = new ArrayList<>();
         list.add(item2);
         assertTrue(tracker.replace(item1.getId(), item2));
-        assertThat(tracker.findAll().toString(), is(list.toString()));
+        assertThat(tracker.findAll(), is(list));
     }
 
     @Test
@@ -114,7 +115,7 @@ public class SqlTrackerTest {
         List<Item> list = new ArrayList<>();
         list.add(item1);
         assertTrue(tracker.delete(item2.getId()));
-        assertThat(tracker.findAll().toString(), is(list.toString()));
+        assertThat(tracker.findAll(), is(list));
     }
 
 }
