@@ -17,6 +17,7 @@ import static org.mockito.Mockito.when;
  * @author Nikolay Polegaev
  * @version 1.0 19.09.2021
  */
+
 public class DeleteActionTest {
     @Test
     public void execute() {
