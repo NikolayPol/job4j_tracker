@@ -15,7 +15,7 @@ public class Bus implements Transport {
 
     @Override
     public float toRefuel(int litresOfFuel) {
-        float price = 1; // цена литра топлива
+        float price = 1;
         return price * litresOfFuel;
     }
 }

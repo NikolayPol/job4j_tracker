@@ -7,6 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * Из Timestamp в LocalDateTime
+ * long millis = System.currentTimeMillis();
+ * Timestamp timestamp = new Timestamp(millis);
+ * LocalDateTime localDateTime = timestamp.toLocalDateTime();
+ * Из LocalDateTime в Timestamp
+ * Timestamp timestampFromLDT = Timestamp.valueOf(localDateTime);
+ */
+
 public class SqlTracker implements Store {
 
     private Connection cn;
@@ -100,13 +109,6 @@ public class SqlTracker implements Store {
                 item = new Item(rs.getInt(1), rs.getString(2));
                 item.setCreated(rs.getTimestamp(3).toLocalDateTime());
                 list.add(item);
-
-                /* Из Timestamp в LocalDateTime
-                long millis = System.currentTimeMillis();
-                Timestamp timestamp = new Timestamp(millis);
-                LocalDateTime localDateTime = timestamp.toLocalDateTime();
-                Из LocalDateTime в Timestamp
-                Timestamp timestampFromLDT = Timestamp.valueOf(localDateTime);*/
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -149,5 +151,4 @@ public class SqlTracker implements Store {
         }
         return item;
     }
-
 }
