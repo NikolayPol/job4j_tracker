@@ -17,6 +17,10 @@ import java.util.Properties;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
+/**
+ * + "alter sequence items_id_seq restart with 1;"))
+ */
+
 public class SqlTrackerTest {
     private static Connection connection;
 
@@ -52,7 +56,6 @@ public class SqlTrackerTest {
         try (PreparedStatement statement =
                      connection.prepareStatement(
                              "delete from items")) {
-            //+ "alter sequence items_id_seq restart with 1;"))
             statement.execute();
         }
     }
