@@ -1,0 +1,25 @@
+package ru.job4j.di;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+/**
+ * Класс SpringDI - использует Dependency Injection от SpringFramework.
+ * В context регистрируем классы и он отдает проинициализированные объекты.
+ * Подключили зависимости spring-core, spring-beans, spring-context.
+ * AnnotationConfigApplicationContext - класс из пакета org.springframework.
+ *
+ * @author Nikolay Polegaev
+ * @version 1.0 21.11.2021
+ */
+public class SpringDI {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(Store.class);
+        context.register(StartUI.class);
+        context.refresh();
+        StartUI ui = context.getBean(StartUI.class);
+        ui.add("Petr Arsentev!");
+        ui.add("Ivan Ivanov!");
+        ui.print();
+    }
+}
