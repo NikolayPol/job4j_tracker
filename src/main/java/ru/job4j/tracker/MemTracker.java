@@ -21,7 +21,12 @@ public class MemTracker implements Store {
     }
 
     public List<Item> findAll() {
-        return List.copyOf(items);
+        Observe<Item> observe = System.out::println;
+        List<Item> list = List.copyOf(items);
+        for (Item datum : list) {
+            observe.receive(datum);
+        }
+        return list;
     }
 
     public List<Item> findByName(String key) {

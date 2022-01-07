@@ -17,15 +17,14 @@ public class ShowAllAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store tracker) {
-        out.println("=== Show all items ====");
+        boolean rsl = false;
+        out.println("=== Show all items by react====");
         List<Item> items = tracker.findAll();
         if (items.size() > 0) {
-            for (Item item : items) {
-                out.println(item);
-            }
+            rsl = true;
         } else {
             out.println("Хранилище еще не содержит заявок");
         }
-        return true;
+        return rsl;
     }
 }
